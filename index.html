@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>森林拼音学校</title>
+  <style>
+    :root {
+      --green: #2d6a4f;
+      --green-light: #88b09a;
+      --cream: #faf8f5;
+      --pink: #d4a5a5;
+      --blue: #9bb0c4;
+      --gold: #c9a86c;
+      --ink: #2b3a2e;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Noto Serif SC', 'PingFang SC', 'Microsoft YaHei', serif;
+      background: linear-gradient(180deg, #e8f5e9 0%, var(--cream) 100%);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+    header {
+      background: linear-gradient(135deg, #1b4332, var(--green));
+      color: #fff; padding: 28px 24px; text-align: center;
+    }
+    header h1 { font-size: 2.2em; letter-spacing: 2px; }
+    header p { opacity: .9; margin-top: 8px; }
+    .stats { display: flex; gap: 20px; justify-content: center; margin-top: 12px; font-size: .95em; }
+    .stats span { background: rgba(255,255,255,.15); padding: 4px 14px; border-radius: 20px; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+    section { margin-bottom: 36px; }
+    h2 {
+      font-size: 1.5em; color: var(--green); margin-bottom: 16px;
+      border-left: 5px solid var(--gold); padding-left: 12px;
+    }
+    .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); }
+    .card {
+      background: #fff; border: 2px solid #e0e8dd; border-radius: 14px;
+      padding: 14px 8px; text-align: center; cursor: pointer;
+      transition: transform .15s, box-shadow .15s, border-color .15s;
+      user-select: none;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 4px 14px rgba(45,106,79,.18); border-color: var(--green-light); }
+    .card:active { transform: scale(.96); }
+    .card .letter { font-size: 1.6em; font-weight: 700; color: var(--green); }
+    .card .tip { font-size: .72em; color: #888; margin-top: 4px; }
+    .pulse { animation: pulse .3s ease; }
+    @keyframes pulse { 0% {transform: scale(1)} 50% {transform: scale(1.08)} 100% {transform: scale(1)} }
+    .tone-group { margin-bottom: 14px; }
+    .group-label { font-size: 1.1em; font-weight: 700; color: var(--blue); margin-bottom: 6px; }
+    .tone-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tone-card { flex: 0 0 auto; min-width: 64px; }
+    .shengdiao-card .letter { font-size: 1.8em; }
+    .koujue-item { display: flex; align-items: center; gap: 10px; font-size: 1.1em; padding: 8px 12px; }
+    .koujue-num { width: 26px; height: 26px; border-radius: 50%; background: var(--gold); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: .85em; flex-shrink: 0; }
+    footer { text-align: center; color: #999; padding: 20px; font-size: .85em; }
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.6em; }
+      .grid { grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); }
+      .card .letter { font-size: 1.3em; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌲 森林拼音学校</h1>
+    <p>点一点卡片，听一听发音 ♪ 从声母到声调，边玩边学</p>
+    <div class="stats">
+      <span>🎧 音频 <b id="audio-count">140</b> 个</span>
+      <span>📚 音节 <b id="total-count">0</b> 个</span>
+    </div>
+  </header>
+
+  <div class="container">
+    <section>
+      <h2>🅰️ 声母（23 个）</h2>
+      <div id="shengmu-grid" class="grid"></div>
+    </section>
+
+    <section>
+      <h2>🅱️ 韵母（24 个）</h2>
+      <div id="yunmu-grid" class="grid"></div>
+    </section>
+
+    <section>
+      <h2>🔤 整体认读音节（16 个 × 4 声调）</h2>
+      <div id="zhengti-grid"></div>
+    </section>
+
+    <section>
+      <h2>🎯 单韵母声调（6 个 × 4 声调）</h2>
+      <div id="danyunmu-grid"></div>
+    </section>
+
+    <section>
+      <h2>📈 声调演示（ma 五声）</h2>
+      <div id="shengdiao-grid" class="grid"></div>
+    </section>
+
+    <section>
+      <h2>🎵 声调口诀</h2>
+      <div id="koujue-grid"></div>
+    </section>
+  </div>
+
+  <footer>森林拼音学校 · 真人女声预录音频 · 点击即听 ♪</footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
